@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.morladim.mario">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Mario">
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:directBootAware="false"
+            android:exported="false"
+            android:multiprocess="true"
+            tools:targetApi="n"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+<!--        <service-->
+<!--            android:name=".connect.NetworkJobService"-->
+<!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
+
+<!--        <activity-->
+<!--            android:name=".SplashActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+
+<!--                &lt;!&ndash; 作为主入口 &ndash;&gt;-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                &lt;!&ndash; 是否在launcher中显示 &ndash;&gt;-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+        <activity
+            android:name=".test.TestLauncherActivity"
+            android:exported="true"
+            android:process="com.morladim.mario.kuba">
+            <intent-filter>
+
+                <!-- 想要有两个入口activity需要同样的action和category -->
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
