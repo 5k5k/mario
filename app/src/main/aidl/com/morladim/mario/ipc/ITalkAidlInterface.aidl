@@ -1,13 +1,17 @@
 // ITalkAidlInterface.aidl
 package com.morladim.mario.ipc;
 
+import com.morladim.mario.ipc.ITalkCallbackAidlInterface;
+
 // Declare any non-default types here with import statements
 
 interface ITalkAidlInterface {
-    /**
-     * Demonstrates some basic types that you can use as parameters
-     * and return values in AIDL.
-     */
-    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
-            double aDouble, String aString);
+
+    void tellServer(String s);
+
+    String getMessage();
+
+    void registerCallback(ITalkCallbackAidlInterface callback);
+
+    void unRegisterCallback(ITalkCallbackAidlInterface callback);
 }

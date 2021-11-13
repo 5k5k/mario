@@ -11,6 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mario">
+        <service
+            android:name=".ipc.aidl.AidlTalkService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.morladim.mario.AidlService" />
+            </intent-filter>
+        </service>
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -18,29 +26,25 @@
             android:directBootAware="false"
             android:exported="false"
             android:multiprocess="true"
-            tools:targetApi="n"
-            tools:node="merge">
+            tools:node="merge"
+            tools:targetApi="n">
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup"
                 tools:node="remove" />
-        </provider>
-
-<!--        <service-->
-<!--            android:name=".connect.NetworkJobService"-->
-<!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
-
-<!--        <activity-->
-<!--            android:name=".SplashActivity"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-
-<!--                &lt;!&ndash; 作为主入口 &ndash;&gt;-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                &lt;!&ndash; 是否在launcher中显示 &ndash;&gt;-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+        </provider> <!-- <service -->
+        <!-- android:name=".connect.NetworkJobService" -->
+        <!-- android:permission="android.permission.BIND_JOB_SERVICE" /> -->
+        <!-- <activity -->
+        <!-- android:name=".SplashActivity" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- &lt;!&ndash; 作为主入口 &ndash;&gt; -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- &lt;!&ndash; 是否在launcher中显示 &ndash;&gt; -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
             android:name=".test.TestLauncherActivity"
             android:exported="true"
@@ -53,7 +57,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
