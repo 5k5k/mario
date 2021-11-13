@@ -9,7 +9,7 @@ class UploadWorker(appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
     override fun doWork(): Result {
         println("doooo")
-        Toast.makeText(applicationContext, "123", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(applicationContext, "123", Toast.LENGTH_SHORT).show()
         return Result.success()
     }
 }

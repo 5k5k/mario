@@ -1,4 +1,4 @@
-package com.morladim.mario
+package com.morladim.mario.app
 
 import android.app.Application
 import android.util.Log

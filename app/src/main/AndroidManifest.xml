@@ -4,7 +4,7 @@
     package="com.morladim.mario">
 
     <application
-        android:name=".App"
+        android:name=".app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,11 +23,11 @@
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
-            android:directBootAware="false"
             android:exported="false"
-            android:multiprocess="true"
-            tools:node="merge"
-            tools:targetApi="n">
+            tools:node="merge">
+            <meta-data
+                android:name="com.morladim.mario.app.AppInitialize"
+                android:value="androidx.startup" />
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup"
@@ -35,16 +35,16 @@
         </provider> <!-- <service -->
         <!-- android:name=".connect.NetworkJobService" -->
         <!-- android:permission="android.permission.BIND_JOB_SERVICE" /> -->
-        <!-- <activity -->
-        <!-- android:name=".SplashActivity" -->
-        <!-- android:exported="true"> -->
-        <!-- <intent-filter> -->
-        <!-- &lt;!&ndash; 作为主入口 &ndash;&gt; -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- &lt;!&ndash; 是否在launcher中显示 &ndash;&gt; -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <!-- 作为主入口 -->
+                <action android:name="android.intent.action.MAIN" />
+                <!-- 是否在launcher中显示 -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".test.TestLauncherActivity"
             android:exported="true"

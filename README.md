@@ -1,4 +1,4 @@
-# mario
+# Mario
 ## 简介
 + 一款使用谷歌推荐方式开发的Android应用。
 + 使用Kotlin作为开发语言，MVVM为整体架构。
@@ -14,3 +14,4 @@
 
 ## 详细内容
 + App Startup
++ AIDL
