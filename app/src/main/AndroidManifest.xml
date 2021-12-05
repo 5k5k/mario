@@ -37,7 +37,7 @@
         <!-- android:name=".connect.NetworkJobService" -->
         <!-- android:permission="android.permission.BIND_JOB_SERVICE" /> -->
         <activity
-            android:name=".MainActivity"
+            android:name=".framework.MainActivity"
             android:exported="true">
             <intent-filter>
                 <!-- 作为主入口 -->

@@ -2,12 +2,14 @@ package com.morladim.mario.db
 
 import android.app.Application
 import androidx.room.Room
+import java.util.concurrent.Executors
 
 /**
  *
  * @Author 5k5k
  * @Date 2021/11/27-22:16
  */
+@Deprecated("使用DatabaseRepository替代")
 object DbManager {
     private lateinit var dbName: String
     private lateinit var context: Application
@@ -26,7 +28,7 @@ object DbManager {
             db = Room.databaseBuilder(
                 context,
                 AppDatabase::class.java, dbName
-            ).build()
+            ).setQueryExecutor(Executors.newSingleThreadExecutor()).build()
         }
     }
 }

@@ -1,10 +1,11 @@
-package com.morladim.mario
+package com.morladim.mario.framework
 
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.morladim.mario.R
 import com.morladim.mario.base.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.Executors
@@ -14,7 +15,10 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        setContentView<ActivityMainBinding>(this,R.layout.activity_main)
         setContentView(R.layout.activity_main)
+//        setContentView<ActivityGardenBinding>(this, R.layout.activity_garden)
+
         LogUtils.trace("main process: " + android.os.Process.myTid())
 
         val handler = Handler(Looper.getMainLooper()) {
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 //                handler.post {
 //                    Toast.makeText(this, "!111", Toast.LENGTH_LONG).show()
 //                }
-                handler.sendEmptyMessage(1)
+//                handler.sendEmptyMessage(1)
                 LogUtils.trace("222")
             } catch (e: Exception) {
                 e.printStackTrace()

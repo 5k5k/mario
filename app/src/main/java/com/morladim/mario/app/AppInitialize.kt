@@ -23,7 +23,7 @@ class AppInitialize : Initializer<Unit> {
         //主线程
         LogUtils.init("===Nintendo##Mario##")
         LogUtils.trace("initialize process: " + android.os.Process.myTid())
-        DbManager.init(context.applicationContext as Application,"mario")
+//        DbManager.init(context.applicationContext as Application,"mario")
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> {

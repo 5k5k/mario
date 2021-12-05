@@ -1,4 +1,4 @@
-package com.morladim.mario.db
+package com.morladim.mario.db.item
 
 
 import androidx.room.Dao
