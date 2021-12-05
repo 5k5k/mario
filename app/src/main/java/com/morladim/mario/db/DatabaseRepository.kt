@@ -12,7 +12,11 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Qualifier
 import javax.inject.Singleton
-
+/**
+ *
+ * @Author 5k5k
+ * @Date 2021/12/5
+ */
 // TODO: 2021/12/2 okhttp4
 @Module
 @InstallIn(SingletonComponent::class)

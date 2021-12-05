@@ -7,7 +7,7 @@ import java.util.concurrent.Executors
 /**
  *
  * @Author 5k5k
- * @Date 2021/11/27-22:16
+ * @Date 2021/11/27
  */
 @Deprecated("使用DatabaseRepository替代")
 object DbManager {

@@ -12,7 +12,7 @@ import com.morladim.mario.databinding.FragmentMainViewPagerBinding
 
 /**
  * @Author 5k5k
- * @Date 2021/11/28-7:26
+ * @Date 2021/11/28
  */
 class MainViewPagerFragment : Fragment() {
     override fun onCreateView(

@@ -5,7 +5,11 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-
+/**
+ *
+ * @Author 5k5k
+ * @Date 2021/12/5
+ */
 @Dao
 interface ItemDao {
 

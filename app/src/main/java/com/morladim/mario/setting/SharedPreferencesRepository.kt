@@ -9,6 +9,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ *
+ * @Author 5k5k
+ * @Date 2021/12/5
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class SharedPreferencesRepository {

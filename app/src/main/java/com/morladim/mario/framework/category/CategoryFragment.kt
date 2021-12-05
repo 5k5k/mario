@@ -10,7 +10,7 @@ import com.morladim.mario.databinding.FragmentCategoryBinding
 /**
  * tab category
  * @Author 5k5k
- * @Date 2021/12/5-9:33
+ * @Date 2021/12/5
  */
 class CategoryFragment : Fragment() {
 

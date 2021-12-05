@@ -15,7 +15,7 @@ const val SETTING_PAGE_INDEX = 3
 /**
  *
  * @Author 5k5k
- * @Date 2021/12/5-9:23
+ * @Date 2021/12/5
  */
 class MainViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 

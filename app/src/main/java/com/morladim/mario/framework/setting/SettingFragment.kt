@@ -10,7 +10,7 @@ import com.morladim.mario.databinding.FragmentSettingBinding
 /**
  *
  * @Author 5k5k
- * @Date 2021/12/5-9:48
+ * @Date 2021/12/5
  */
 class SettingFragment : Fragment() {
     override fun onCreateView(
