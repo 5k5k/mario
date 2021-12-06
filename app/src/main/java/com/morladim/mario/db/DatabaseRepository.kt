@@ -2,7 +2,7 @@ package com.morladim.mario.db
 
 import android.content.Context
 import androidx.room.Room
-import com.morladim.mario.db.item.ItemDao
+import com.morladim.mario.db.item.AndroidItemDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,7 +47,7 @@ class DatabaseRepository {
 
     @Provides
     @Singleton
-    fun getItemDao(db: AppDatabase): ItemDao {
+    fun getItemDao(db: AppDatabase): AndroidItemDao {
         return db.userDao()
     }
 

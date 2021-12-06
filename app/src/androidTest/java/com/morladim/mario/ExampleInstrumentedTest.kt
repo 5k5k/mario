@@ -1,12 +1,14 @@
 package com.morladim.mario
 
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.test.platform.app.InstrumentationRegistry
+import com.morladim.mario.db.DatabaseRepository
+import com.morladim.mario.db.item.AndroidItemEntity
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
+import java.util.*
+import java.util.concurrent.Executors
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -20,5 +22,14 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.morladim.mario", appContext.packageName)
+    }
+
+    @Test
+    fun insertToAndroidItem() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val androidItemDao = DatabaseRepository().getDatabase(appContext, Executors.newSingleThreadExecutor()).userDao()
+        val now = Date()
+        val item = AndroidItemEntity(0,now,now,"Paging 3","iii",0,false,-1,3f)
+        androidItemDao.insertAll(item)
     }
 }

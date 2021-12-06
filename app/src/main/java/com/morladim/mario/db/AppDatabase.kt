@@ -2,8 +2,9 @@ package com.morladim.mario.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.morladim.mario.db.item.ItemDao
-import com.morladim.mario.db.item.ItemEntity
+import androidx.room.TypeConverters
+import com.morladim.mario.db.item.AndroidItemDao
+import com.morladim.mario.db.item.AndroidItemEntity
 import com.morladim.mario.db.reference.ReferenceEntity
 import com.morladim.mario.db.tag.TagEntity
 import com.morladim.mario.db.tag.TagJoinOtherEntity
@@ -16,11 +17,12 @@ import com.morladim.mario.db.tag.TagJoinOtherEntity
 //url https://www.jianshu.com/p/ce063e04d116
 //fts4 https://www.sqlite.org/fts3.html
 @Database(
-    entities = [ItemEntity::class, TagEntity::class, TagJoinOtherEntity::class, ReferenceEntity::class],
+    entities = [AndroidItemEntity::class, TagEntity::class, TagJoinOtherEntity::class, ReferenceEntity::class],
     version = 1
 )
+@TypeConverters(DbConverters::class)
 //@Database(entities = arrayOf(ItemEntity::class), version = 1,exportSchema = false )
 //https://developer.android.com/codelabs/android-room-with-a-view-kotlin?hl=zh-cn#5
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): ItemDao
+    abstract fun userDao(): AndroidItemDao
 }

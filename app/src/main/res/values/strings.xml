@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Mario</string>
 
-    <string name="main_category">分类</string>
+    <string name="main_android">Android</string>
+    <string name="main_kotlin">Kotlin</string>
     <string name="main_instance">实例</string>
     <string name="main_leetcode">力扣</string>
     <string name="main_setting">设置</string>

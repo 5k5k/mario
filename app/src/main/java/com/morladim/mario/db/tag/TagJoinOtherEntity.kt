@@ -20,7 +20,7 @@ data class TagJoinOtherEntity(
     @ColumnInfo(name = "tag_id") val tagId: Int,
     @ColumnInfo(name = "other_id") val otherId: Int,
     /**
-     * otherId的类型，0为ItemEntity
+     * otherId的类型，0为AndroidItemEntity
      */
     val type: Int,
 )

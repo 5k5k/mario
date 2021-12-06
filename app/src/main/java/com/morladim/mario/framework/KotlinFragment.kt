@@ -1,25 +1,26 @@
-package com.morladim.mario.framework.category
+package com.morladim.mario.framework
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.morladim.mario.databinding.FragmentCategoryBinding
+import com.morladim.mario.databinding.FragmentKotlinBinding
 
 /**
- * tab category
+ *
  * @Author 5k5k
- * @Date 2021/12/5
+ * @Date 2021/12/6
  */
-class CategoryFragment : Fragment() {
+class KotlinFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentCategoryBinding.inflate(inflater, container, false)
+        val binding = FragmentKotlinBinding.inflate(inflater, container, false)
+
 
         return binding.root
     }

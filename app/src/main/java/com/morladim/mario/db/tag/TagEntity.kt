@@ -1,5 +1,6 @@
 package com.morladim.mario.db.tag
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
@@ -12,9 +13,9 @@ import java.util.*
 @Entity(tableName = "tag")
 data class TagEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val createAt: Date,
-    val updateAt: Date,
+    val id: Long,
+    @ColumnInfo(name = "create_at") val createAt: Date,
+    @ColumnInfo(name = "update_at") val updateAt: Date,
 
     val name: String,
 )

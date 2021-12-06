@@ -35,7 +35,8 @@ class MainViewPagerFragment : Fragment() {
 
     fun getTabIcon(position: Int): Int {
         return when (position) {
-            CATEGORY_PAGE_INDEX -> R.mipmap.ic_main_category
+            ANDROID_PAGE_INDEX -> R.mipmap.ic_main_category
+            KOTLIN_PAGE_INDEX -> R.mipmap.ic_main_category
             INSTANCE_PAGE_INDEX -> R.mipmap.ic_main_instance
             LEETCODE_PAGE_INDEX -> R.mipmap.ic_main_leetcode
             SETTING_PAGE_INDEX -> R.mipmap.ic_main_setting
@@ -45,7 +46,8 @@ class MainViewPagerFragment : Fragment() {
 
     fun getTabText(position: Int): Int {
         return when (position) {
-            CATEGORY_PAGE_INDEX -> R.string.main_category
+            ANDROID_PAGE_INDEX -> R.string.main_android
+            KOTLIN_PAGE_INDEX -> R.string.main_android
             INSTANCE_PAGE_INDEX -> R.string.main_instance
             LEETCODE_PAGE_INDEX -> R.string.main_leetcode
             SETTING_PAGE_INDEX -> R.string.main_setting

@@ -8,16 +8,16 @@ import javax.inject.Inject
  * @Author 5k5k
  * @Date 2021/12/5
  */
-class ItemDatabaseRepository @Inject constructor() {
+class AndroidItemDatabaseRepository @Inject constructor() {
 
     @Inject
-    lateinit var item: ItemDao
+    lateinit var androidItem: AndroidItemDao
 
     @DatabaseRepository.DbExecutor
     @Inject
     lateinit var executor: Executor
 
-    fun insertAll(vararg items: ItemEntity) {
-        executor.execute { item.insertAll(*items) }
+    fun insertAll(vararg items: AndroidItemEntity) {
+        executor.execute { androidItem.insertAll(*items) }
     }
 }
