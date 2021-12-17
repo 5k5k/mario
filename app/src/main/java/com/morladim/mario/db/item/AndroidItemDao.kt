@@ -13,6 +13,10 @@ import androidx.room.Query
 @Dao
 interface AndroidItemDao {
 
+    //为了支持协程加入suspend
+    @Query("SELECT * FROM android_item ORDER BY id LIMIT (:limit) OFFSET (:offset) ")
+    suspend fun getByPage(limit: Int, offset: Int): List<AndroidItemEntity>
+
     @Query("SELECT * FROM android_item")
     fun getAll(): List<AndroidItemEntity>
 

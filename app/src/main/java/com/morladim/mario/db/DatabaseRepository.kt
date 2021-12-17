@@ -2,7 +2,10 @@ package com.morladim.mario.db
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.morladim.mario.db.item.AndroidItemDao
+import com.morladim.mario.db.menu.MenuDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +15,7 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Qualifier
 import javax.inject.Singleton
+
 /**
  *
  * @Author 5k5k
@@ -35,7 +39,16 @@ class DatabaseRepository {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java, "mario.db"
-        ).setQueryExecutor(executor).build()
+        ).addMigrations(MIGRATION_1_2).setQueryExecutor(executor).build()
+    }
+
+    val MIGRATION_1_2 = object : Migration(1, 2) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL(
+                "CREATE TABLE `menu` (`id` INTEGER not null , `name` TEXT not null, `sort` INTEGER TEXT not null, `first` INTEGER TEXT not null, " +
+                        "PRIMARY KEY(`id`))"
+            )
+        }
     }
 
     @Provides
@@ -49,6 +62,12 @@ class DatabaseRepository {
     @Singleton
     fun getItemDao(db: AppDatabase): AndroidItemDao {
         return db.userDao()
+    }
+
+    @Provides
+    @Singleton
+    fun getMenuDao(db: AppDatabase): MenuDao {
+        return db.menuDao()
     }
 
     @Provides

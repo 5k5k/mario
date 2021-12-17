@@ -2,6 +2,10 @@
 buildscript {
     ext{
         navigationVersion = '2.3.5'
+        hiltVersion = '2.38.1'
+        retrofitVersion = '2.9.0'
+        okhttpLoggingInterceptorVersion = '4.9.3'
+        coroutines = '1.4.3'
     }
     repositories {
         google()

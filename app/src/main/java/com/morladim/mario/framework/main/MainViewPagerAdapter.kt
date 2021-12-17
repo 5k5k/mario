@@ -7,6 +7,7 @@ import com.morladim.mario.framework.android.AndroidFragment
 import com.morladim.mario.framework.instance.InstanceFragment
 import com.morladim.mario.framework.leetcode.LeetCodeFragment
 import com.morladim.mario.framework.setting.SettingFragment
+import com.morladim.mario.sample.github.GitHubFragment
 
 const val ANDROID_PAGE_INDEX = 0
 const val KOTLIN_PAGE_INDEX = 1
@@ -25,7 +26,8 @@ class MainViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) 
         ANDROID_PAGE_INDEX to { AndroidFragment() },
         KOTLIN_PAGE_INDEX to { KotlinFragment() },
         INSTANCE_PAGE_INDEX to { InstanceFragment() },
-        LEETCODE_PAGE_INDEX to { LeetCodeFragment() },
+        LEETCODE_PAGE_INDEX to { GitHubFragment() },
+//        LEETCODE_PAGE_INDEX to { LeetCodeFragment() },
         SETTING_PAGE_INDEX to { SettingFragment() }
     )
 

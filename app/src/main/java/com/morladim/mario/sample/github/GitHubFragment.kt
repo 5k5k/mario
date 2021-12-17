@@ -1,4 +1,4 @@
-package com.morladim.mario.framework.android
+package com.morladim.mario.sample.github
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,58 +7,52 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.morladim.mario.R
-import com.morladim.mario.androiditem.AndroidItemPagingDataAdapter
-import com.morladim.mario.androiditem.AndroidItemViewModel
-import com.morladim.mario.databinding.FragmentAndroidBinding
-import com.morladim.mario.sample.github.GitHubFooterAdapter
-import com.morladim.mario.sample.github.GitHubPagingDataAdapter
+import com.morladim.mario.databinding.FragmentGithubBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
- * tab category
+ *
  * @Author 5k5k
- * @Date 2021/12/5
+ * @Date 2021/12/15
  */
 @AndroidEntryPoint
-class AndroidFragment : Fragment() {
+class GitHubFragment : Fragment() {
 
-    private val viewModel by viewModels<AndroidItemViewModel>()
+    private val viewModel by lazy { ViewModelProvider(this).get(GitHubViewModel::class.java) }
 
     private val repoAdapter = GitHubPagingDataAdapter()
-
-    private val androidItemAdapter = AndroidItemPagingDataAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentAndroidBinding.inflate(inflater, container, false)
+        val binding = FragmentGithubBinding.inflate(inflater, container, false)
 
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter =androidItemAdapter
+        recyclerView.adapter =
+            repoAdapter.withLoadStateFooter(GitHubFooterAdapter { repoAdapter.retry() })
         lifecycleScope.launch {
             viewModel.getPagingData().collect { pagingData ->
-                androidItemAdapter.submitData(pagingData)
+                repoAdapter.submitData(pagingData)
             }
         }
-        androidItemAdapter.addLoadStateListener {
+        repoAdapter.addLoadStateListener {
             when (it.refresh) {
                 is LoadState.NotLoading -> {
                     progressBar.visibility = View.INVISIBLE
