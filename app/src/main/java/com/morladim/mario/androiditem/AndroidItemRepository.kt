@@ -3,7 +3,7 @@ package com.morladim.mario.androiditem
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.morladim.mario.db.item.AndroidItemEntity
+import com.morladim.mario.androiditem.db.AndroidItemEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 /**

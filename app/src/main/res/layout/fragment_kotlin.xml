@@ -7,9 +7,24 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="kotlin"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/b1"
+            android:text="b1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text" />
+
+        <Button
+            android:id="@+id/b2"
+            android:text="b2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/b1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home_view_pager_fragment"
-        android:name="com.morladim.mario.framework.main.MainViewPagerFragment">
+        android:name="com.morladim.mario.main.MainViewPagerFragment">
         <!--        <action-->
         <!--            android:id="@+id/action_view_pager_fragment_to_plant_detail_fragment"-->
         <!--            app:destination="@id/plant_detail_fragment"-->

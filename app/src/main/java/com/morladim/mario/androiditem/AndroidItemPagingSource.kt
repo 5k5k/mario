@@ -2,8 +2,8 @@ package com.morladim.mario.androiditem
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.morladim.mario.db.item.AndroidItemDao
-import com.morladim.mario.db.item.AndroidItemEntity
+import com.morladim.mario.androiditem.db.AndroidItemDao
+import com.morladim.mario.androiditem.db.AndroidItemEntity
 import javax.inject.Inject
 /**
  *

@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.morladim.mario.network.Repo
+import com.morladim.mario.sample.github.model.Repo
+import com.morladim.mario.sample.github.model.GitHubRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -22,13 +23,7 @@ import javax.inject.Inject
 //https://developer.android.com/kotlin/ktx?hl=zh-cn#groovy
 //https://juejin.cn/post/6880226310959038478
 @HiltViewModel
-class GitHubViewModel @Inject constructor(): ViewModel() {
-
-//    @Inject
-//    lateinit var repoRepository: RepoRepository
-
-    val repoRepository = RepoRepository()
-
+class GitHubViewModel @Inject constructor(private val repoRepository: GitHubRepository): ViewModel() {
 
     fun getPagingData(): Flow<PagingData<Repo>> {
         return repoRepository.getPagingData().cachedIn(viewModelScope)

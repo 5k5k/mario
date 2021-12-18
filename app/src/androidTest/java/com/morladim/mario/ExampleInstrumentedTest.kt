@@ -2,9 +2,9 @@ package com.morladim.mario
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.morladim.mario.db.DatabaseRepository
-import com.morladim.mario.db.item.AndroidItemEntity
-import com.morladim.mario.db.menu.MenuEntity
+import com.morladim.mario.main.factory.DatabaseRepository
+import com.morladim.mario.androiditem.db.AndroidItemEntity
+import com.morladim.mario.main.menu.db.MenuEntity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,7 +38,6 @@ class ExampleInstrumentedTest {
         val item = AndroidItemEntity(0, now, now, "Paging 3", "iii", 0, false, -1, 3f)
         androidItemDao.insertAll(item)
     }
-
 
     /**
      * 初始化菜单数据

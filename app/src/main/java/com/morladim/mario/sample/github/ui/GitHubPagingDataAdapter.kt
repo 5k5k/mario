@@ -1,4 +1,4 @@
-package com.morladim.mario.androiditem
+package com.morladim.mario.sample.github.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,28 +8,22 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.morladim.mario.R
-import com.morladim.mario.androiditem.db.AndroidItemEntity
+import com.morladim.mario.sample.github.model.Repo
 /**
  *
  * @Author 5k5k
- * @Date 2021/12/17
+ * @Date 2021/12/16
  */
-class AndroidItemPagingDataAdapter :
-    PagingDataAdapter<AndroidItemEntity, AndroidItemPagingDataAdapter.ViewHolder>(COMPARATOR) {
+class GitHubPagingDataAdapter :
+    PagingDataAdapter<Repo, GitHubPagingDataAdapter.ViewHolder>(COMPARATOR) {
 
     companion object {
-        private val COMPARATOR = object : DiffUtil.ItemCallback<AndroidItemEntity>() {
-            override fun areItemsTheSame(
-                oldItem: AndroidItemEntity,
-                newItem: AndroidItemEntity
-            ): Boolean {
+        private val COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
+            override fun areItemsTheSame(oldItem: Repo, newItem: Repo): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(
-                oldItem: AndroidItemEntity,
-                newItem: AndroidItemEntity
-            ): Boolean {
+            override fun areContentsTheSame(oldItem: Repo, newItem: Repo): Boolean {
                 return oldItem == newItem
             }
         }
@@ -41,10 +35,11 @@ class AndroidItemPagingDataAdapter :
 //        val starCount: TextView = itemView.findViewById(R.id.star_count_text)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        if (item != null) {
-            holder.name.text = item.name
+        val repo = getItem(position)
+        if (repo != null) {
+            holder.name.text = repo.name
         }
     }
 
