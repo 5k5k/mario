@@ -6,12 +6,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:id="@+id/tabs"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            style="@style/Widget.MaterialComponents.TabLayout.Colored"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"/>-->
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             app:layout_constraintBottom_toBottomOf="parent"
-            style="@style/Widget.MaterialComponents.TabLayout.Colored"
+            android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="wrap_content" />
+
 <!--        app:tabIconTint="@drawable/tab_icon_color_selector"-->
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout

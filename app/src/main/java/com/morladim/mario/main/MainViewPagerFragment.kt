@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
@@ -58,17 +57,33 @@ class MainViewPagerFragment : Fragment() {
                     binding.viewPager.adapter =
                         MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo)
 
-                    TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
-                        tab.setIcon(getTabIcon(position))
-                        tab.setText(getTabText(position))
+                    binding.tabs.menu.add(0, 0, 0, "Android")
+                    binding.tabs.menu.findItem(0).setIcon(l.get()!!)
+
+                    binding.tabs.menu.add(0, 1, 1, R.string.main_android)
+                    binding.tabs.menu.findItem(1).setIcon(R.mipmap.ic_main_instance)
+
+                    binding.tabs.menu.add(0, 2, 2,  R.string.main_instance)
+                    binding.tabs.menu.findItem(2).setIcon( R.mipmap.ic_main_instance)
+
+                    binding.tabs.menu.add(0, 3, 3, R.string.main_setting)
+                    binding.tabs.menu.findItem(3).setIcon(R.mipmap.ic_main_setting)
+
+                    NavigationViewMediator(binding.tabs,binding.viewPager){
+                            tab, viewPager2 ->
+//                        viewPager2.isUserInputEnabled = false
                     }.attach()
+//                    TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
+//                        tab.setIcon(getTabIcon(position))
+//                        tab.setText(getTabText(position))
+//                    }.attach()
                 } else {
                     val clazz = menuInfo.clazz
-                    val a = ( binding.viewPager.adapter as MainViewPagerAdapter).fragments!!
-                    a[FIRST_PAGE_INDEX] = {clazz.createInstance() }
-                    if(clazz == AndroidFragment::class){
+                    val a = (binding.viewPager.adapter as MainViewPagerAdapter).fragments!!
+                    a[FIRST_PAGE_INDEX] = { clazz.createInstance() }
+                    if (clazz == AndroidFragment::class) {
                         l.set(R.mipmap.ic_main_category)
-                    }else{
+                    } else {
                         l.set(R.mipmap.ic_main_setting)
                     }
 
@@ -87,7 +102,7 @@ class MainViewPagerFragment : Fragment() {
         return binding.root
     }
 
-    fun tt():Fragment{
+    fun tt(): Fragment {
         return AndroidFragment()
     }
 
