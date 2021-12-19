@@ -30,11 +30,14 @@
 
 ## 详细内容
 
++ Hilt
++ Navigation
++ ViewModel
++ LiveData
++ Lifecycle
++ Room
 + App Startup
 + AIDL
 + SplashScreen
-+ Room
-+ Hilt
-+ Navigation
 + Material Design 3
-+ Shared Preference
++ DataStore

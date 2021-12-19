@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_700">#FF616161</color>
+    
+    <color name="shrine_pink_100">#FFF8BBD0</color>
+    <color name="shrine_pink_900">#FF880E4F</color>
 </resources>

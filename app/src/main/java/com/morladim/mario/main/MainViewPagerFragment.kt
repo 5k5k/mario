@@ -2,32 +2,28 @@ package com.morladim.mario.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.ObservableField
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import com.google.android.material.tabs.TabLayoutMediator
 import com.morladim.mario.R
-import com.morladim.mario.androiditem.AndroidFragment
 import com.morladim.mario.databinding.FragmentMainViewPagerBinding
-import com.morladim.mario.main.menu.MenuConstants
-import com.morladim.mario.main.menu.db.MenuEntity
+import com.morladim.mario.main.menu.MenuInfo
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import kotlin.reflect.full.createInstance
 
 /**
+ * 主页Fragment
  * @Author 5k5k
  * @Date 2021/11/28
  */
 @AndroidEntryPoint
 class MainViewPagerFragment : Fragment() {
 
-    val mainViewModel by viewModels<MainViewModel>()
+    private val mainViewModel by viewModels<MainFragmentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,98 +31,43 @@ class MainViewPagerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentMainViewPagerBinding.inflate(inflater)
+        initMenu(binding.tabs.menu)
 
-        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        //第一个标签数据改变后更新UI
+        val menuInfoObserver = Observer<MenuInfo> { menuInfo ->
+            if (binding.viewPager.adapter == null) {
+                binding.tabs.menu.add(0, 0, 0, menuInfo.titleId)
+                binding.tabs.menu.findItem(0).setIcon(menuInfo.iconId)
+                binding.viewPager.adapter =
+                    MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo)
 
-        lifecycleScope.launch {
-//            val menuEntity = mainViewModel.getFirstMenu()
-//            val menuInfo = MenuConstants.menuMaps[menuEntity.id]!!
-//            binding.viewPager.adapter = MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo)
-//
-//            TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
-//                tab.setIcon(getTabIcon(position))
-//                tab.setText(getTabText(position))
-//            }.attach()
-
-            val live = mainViewModel.getFirstMenu()
-
-            val nameObserver = Observer<MenuEntity> { menuEntity ->
-                val menuInfo = MenuConstants.menuMaps[menuEntity.id]!!
-
-                if (binding.viewPager.adapter == null) {
-                    binding.viewPager.adapter =
-                        MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo)
-
-                    binding.tabs.menu.add(0, 0, 0, "Android")
-                    binding.tabs.menu.findItem(0).setIcon(l.get()!!)
-
-                    binding.tabs.menu.add(0, 1, 1, R.string.main_android)
-                    binding.tabs.menu.findItem(1).setIcon(R.mipmap.ic_main_instance)
-
-                    binding.tabs.menu.add(0, 2, 2,  R.string.main_instance)
-                    binding.tabs.menu.findItem(2).setIcon( R.mipmap.ic_main_instance)
-
-                    binding.tabs.menu.add(0, 3, 3, R.string.main_setting)
-                    binding.tabs.menu.findItem(3).setIcon(R.mipmap.ic_main_setting)
-
-                    NavigationViewMediator(binding.tabs,binding.viewPager){
-                            tab, viewPager2 ->
+                NavigationViewMediator(binding.tabs, binding.viewPager) { tab, viewPager2 ->
 //                        viewPager2.isUserInputEnabled = false
-                    }.attach()
-//                    TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
-//                        tab.setIcon(getTabIcon(position))
-//                        tab.setText(getTabText(position))
-//                    }.attach()
-                } else {
-                    val clazz = menuInfo.clazz
-                    val a = (binding.viewPager.adapter as MainViewPagerAdapter).fragments!!
-                    a[FIRST_PAGE_INDEX] = { clazz.createInstance() }
-                    if (clazz == AndroidFragment::class) {
-                        l.set(R.mipmap.ic_main_category)
-                    } else {
-                        l.set(R.mipmap.ic_main_setting)
-                    }
-
-                    binding.viewPager.adapter!!.notifyItemChanged(FIRST_PAGE_INDEX)
-//                    TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
-//                        tab.setIcon(getTabIcon(position))
-//                        tab.setText(getTabText(position))
-//                    }.attach()
-                }
+                    //去掉长按toast
+                    (tab.getChildAt(0) as? ViewGroup)?.children?.forEach { it.setOnLongClickListener { true } }
+                }.attach()
+            } else {
+                binding.tabs.menu.findItem(0).setTitle(menuInfo.titleId)
+                binding.tabs.menu.findItem(0).setIcon(menuInfo.iconId)
+                val map = (binding.viewPager.adapter as MainViewPagerAdapter).fragments!!
+                map[FIRST_PAGE_INDEX] = { menuInfo.clazz.createInstance() }
+                binding.viewPager.adapter!!.notifyItemChanged(FIRST_PAGE_INDEX)
             }
-
-            live.observe(this@MainViewPagerFragment, nameObserver)
-
         }
+        mainViewModel.menuInfo.observe(this@MainViewPagerFragment, menuInfoObserver)
 
         return binding.root
     }
 
-    fun tt(): Fragment {
-        return AndroidFragment()
+    private fun initMenu(menu: Menu) {
+        menu.add(0, 1, 1, R.string.main_android)
+        menu.findItem(1).setIcon(R.mipmap.ic_main_instance)
+
+        menu.add(0, 2, 2, R.string.main_instance)
+        menu.findItem(2).setIcon(R.mipmap.ic_main_instance)
+
+        menu.add(0, 3, 3, R.string.main_setting)
+        menu.findItem(3).setIcon(R.mipmap.ic_main_setting)
     }
 
-    val l = ObservableField<Int>(R.mipmap.ic_main_category)
-
-    fun getTabIcon(position: Int): Int {
-        return when (position) {
-            FIRST_PAGE_INDEX -> l.get()!!
-            ITEMS_PAGE_INDEX -> R.mipmap.ic_main_category
-            SAMPLE_PAGE_INDEX -> R.mipmap.ic_main_instance
-//            LEETCODE_PAGE_INDEX -> R.mipmap.ic_main_leetcode
-            SETTING_PAGE_INDEX -> R.mipmap.ic_main_setting
-            else -> throw IndexOutOfBoundsException()
-        }
-    }
-
-    fun getTabText(position: Int): Int {
-        return when (position) {
-            FIRST_PAGE_INDEX -> R.string.main_android
-            ITEMS_PAGE_INDEX -> R.string.main_android
-            SAMPLE_PAGE_INDEX -> R.string.main_instance
-//            LEETCODE_PAGE_INDEX -> R.string.main_leetcode
-            SETTING_PAGE_INDEX -> R.string.main_setting
-            else -> throw IndexOutOfBoundsException()
-        }
-    }
 }

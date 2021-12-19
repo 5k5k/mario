@@ -18,6 +18,9 @@ class MenuDatabaseRepository @Inject constructor() {
     @Inject
     lateinit var executor: Executor
 
+    fun getFirstMenu(): LiveData<MenuEntity> {
+        return menu.getFirstMenu()
+    }
 
     suspend fun getOthers(): List<MenuEntity> {
         return menu.getOthers()
@@ -27,14 +30,6 @@ class MenuDatabaseRepository @Inject constructor() {
 //        return menu.getOthersWithLiveData()
 //    }
 
-    fun getFirstMenu(): LiveData<MenuEntity> {
-        return menu.getFirstMenu()
-    }
-
-//    suspend fun getT(): LiveData<MenuEntity> {
-//        return menu.findFirstMenu()
-//    }
-
     fun setAndroid0() {
         executor.execute {
             db.runInTransaction {
@@ -42,10 +37,6 @@ class MenuDatabaseRepository @Inject constructor() {
                 menu.updateFirstById(0, 1)
             }
         }
-//        executor.execute {
-//    db.transactionExecutor
-//
-//        }
     }
 
     fun setAndroid1() {

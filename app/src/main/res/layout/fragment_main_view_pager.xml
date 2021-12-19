@@ -6,68 +6,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/tabs"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            style="@style/Widget.MaterialComponents.TabLayout.Colored"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"/>-->
+        <!--        <com.google.android.material.tabs.TabLayout-->
+        <!--            android:id="@+id/tabs"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            style="@style/Widget.MaterialComponents.TabLayout.Colored"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="?attr/actionBarSize"/>-->
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-<!--        app:tabIconTint="@drawable/tab_icon_color_selector"-->
+        <!--        app:itemIconTint="@color/purple_700"-->
+        <!--        android:background="?android:attr/windowBackground"-->
+        <!--        app:tabIconTint="@drawable/tab_icon_color_selector"-->
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:fitsSystemWindows="true"
-            app:layout_behavior="@string/bottom_sheet_behavior"
-            app:layout_constraintBottom_toTopOf="@id/tabs"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toTopOf="@+id/tabs"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-<!--            android:theme="@style/Theme.Sunflower.AppBarOverlay"-->
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true">
-
-                <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/toolbar_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_scrollFlags="scroll|snap"
-                    app:toolbarId="@id/toolbar">
-
-                    <com.google.android.material.appbar.MaterialToolbar
-                        android:id="@+id/toolbar"
-                        style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        app:contentInsetStart="0dp"
-                        app:layout_collapseMode="parallax">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            android:gravity="center"
-                            android:text="@string/app_name"
-                            android:textAppearance="?attr/textAppearanceHeadline5" />
-
-                    </com.google.android.material.appbar.MaterialToolbar>
-
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
-            </com.google.android.material.appbar.AppBarLayout>
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

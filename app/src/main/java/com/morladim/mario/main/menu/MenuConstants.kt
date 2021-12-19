@@ -1,9 +1,8 @@
 package com.morladim.mario.main.menu
 
-import androidx.fragment.app.Fragment
+import com.morladim.mario.R
 import com.morladim.mario.androiditem.AndroidFragment
 import com.morladim.mario.kotlin.KotlinFragment
-import kotlin.reflect.KClass
 
 /**
  *
@@ -17,15 +16,30 @@ object MenuConstants {
     init {
         var current = 1
 
-        var menuInfo = MenuInfo(current, clazz = AndroidFragment::class)
+        var menuInfo = MenuInfo(
+            current,
+            clazz = AndroidFragment::class,
+            R.drawable.ic_main_android,
+            R.string.main_android
+        )
         menuMaps[current] = menuInfo
 
-        menuInfo = MenuInfo(++current, clazz = AndroidFragment::class as KClass<Fragment>)
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = AndroidFragment::class,
+            R.drawable.ic_main_android,
+            R.string.main_android
+        )
         menuMaps[current] = menuInfo
         //        val yang = MenuEntity(++current, "WanAndroid", current, false)
 
 
-        menuInfo = MenuInfo(++current, clazz = KotlinFragment::class as KClass<Fragment>)
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
         menuMaps[current] = menuInfo
 
 

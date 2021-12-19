@@ -22,6 +22,9 @@ import javax.inject.Inject
 //https://madnight.github.io/githut/#/pushes/2021/3
 //https://developer.android.com/kotlin/ktx?hl=zh-cn#groovy
 //https://juejin.cn/post/6880226310959038478
+//https://www.jianshu.com/p/8f915ba6c5a7
+//https://blog.csdn.net/qq_37381177/article/details/115393813?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.highlightwordscore&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.highlightwordscore
+//https://juejin.cn/post/6899330633844129805
 @HiltViewModel
 class GitHubViewModel @Inject constructor(private val repoRepository: GitHubRepository): ViewModel() {
 
@@ -30,20 +33,3 @@ class GitHubViewModel @Inject constructor(private val repoRepository: GitHubRepo
     }
 
 }
-//private static final int CURRENT_STACK = 5 + 2;
-//private static final int PREVIOUS_STACK = 4 + 2;
-
-//private static String[] getAutoJumpLogInfos() {
-//    String[] infos = new String[]{"", "", ""};
-//    StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-//    if (elements.length < CURRENT_STACK) {
-//        return infos;
-//    } else {
-//        infos[0] = elements[PREVIOUS_STACK].getClassName().substring(
-//            elements[PREVIOUS_STACK].getClassName().lastIndexOf(".") + 1);
-//        infos[1] = elements[PREVIOUS_STACK].getMethodName() + "()";
-//        infos[2] = " at (" + elements[PREVIOUS_STACK].getClassName() + ".java:"
-//        + elements[PREVIOUS_STACK].getLineNumber() + ")";
-//        return infos;
-//    }
-//}
