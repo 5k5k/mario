@@ -4,12 +4,18 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.morladim.mario.androiditem.db.AndroidItemDao
 import com.morladim.mario.androiditem.db.AndroidItemEntity
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
+import javax.inject.Singleton
+
 /**
  *
  * @Author 5k5k
  * @Date 2021/12/17
  */
+//@ActivityRetainedScoped
+@Singleton
 class AndroidItemPagingSource @Inject constructor(private val dao: AndroidItemDao) :
     PagingSource<Int, AndroidItemEntity>() {
 

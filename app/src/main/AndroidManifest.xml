@@ -48,18 +48,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.morladim.mario.main.test.TestLauncherActivity"
-            android:exported="true"
-            android:process="com.morladim.mario.kuba">
-            <intent-filter>
+<!--        <activity-->
+<!--            android:name="com.morladim.mario.main.test.TestLauncherActivity"-->
+<!--            android:exported="true"-->
+<!--            android:process="com.morladim.mario.kuba">-->
+<!--            <intent-filter>-->
 
-                <!-- 想要有两个入口activity需要同样的action和category -->
-                <action android:name="android.intent.action.MAIN" />
+<!--                &lt;!&ndash; 想要有两个入口activity需要同样的action和category &ndash;&gt;-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>

@@ -5,7 +5,9 @@ import com.morladim.mario.main.db.AppDatabase
 import com.morladim.mario.main.factory.DatabaseRepository
 import java.util.concurrent.Executor
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MenuDatabaseRepository @Inject constructor() {
 
     @Inject

@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
 /**
@@ -12,6 +13,7 @@ import javax.inject.Inject
  * @Author 5k5k
  * @Date 2021/12/16
  */
+@Singleton
 class GitHubRepository @Inject constructor() {
 
     fun getPagingData(): Flow<PagingData<Repo>> {

@@ -13,7 +13,6 @@ import com.morladim.mario.R
 import com.morladim.mario.databinding.FragmentMainViewPagerBinding
 import com.morladim.mario.main.menu.MenuInfo
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.reflect.full.createInstance
 
 /**
  * 主页Fragment
@@ -39,7 +38,7 @@ class MainViewPagerFragment : Fragment() {
                 binding.tabs.menu.add(0, 0, 0, menuInfo.titleId)
                 binding.tabs.menu.findItem(0).setIcon(menuInfo.iconId)
                 binding.viewPager.adapter =
-                    MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo)
+                    MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo.clazz)
 
                 NavigationViewMediator(binding.tabs, binding.viewPager) { tab, viewPager2 ->
 //                        viewPager2.isUserInputEnabled = false
@@ -49,9 +48,7 @@ class MainViewPagerFragment : Fragment() {
             } else {
                 binding.tabs.menu.findItem(0).setTitle(menuInfo.titleId)
                 binding.tabs.menu.findItem(0).setIcon(menuInfo.iconId)
-                val map = (binding.viewPager.adapter as MainViewPagerAdapter).fragments!!
-                map[FIRST_PAGE_INDEX] = { menuInfo.clazz.createInstance() }
-                binding.viewPager.adapter!!.notifyItemChanged(FIRST_PAGE_INDEX)
+                (binding.viewPager.adapter as MainViewPagerAdapter).changeFirstFragment(menuInfo.clazz)
             }
         }
         mainViewModel.menuInfo.observe(this@MainViewPagerFragment, menuInfoObserver)
@@ -60,8 +57,8 @@ class MainViewPagerFragment : Fragment() {
     }
 
     private fun initMenu(menu: Menu) {
-        menu.add(0, 1, 1, R.string.main_android)
-        menu.findItem(1).setIcon(R.mipmap.ic_main_instance)
+        menu.add(0, 1, 1, R.string.main_category)
+        menu.findItem(1).setIcon(R.drawable.ic_main_category)
 
         menu.add(0, 2, 2, R.string.main_instance)
         menu.findItem(2).setIcon(R.mipmap.ic_main_instance)

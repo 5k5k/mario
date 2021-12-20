@@ -35,7 +35,8 @@ class ExampleInstrumentedTest {
             DatabaseRepository().getDatabase(appContext, Executors.newSingleThreadExecutor())
                 .userDao()
         val now = Date()
-        val item = AndroidItemEntity(0, now, now, "Paging 3", "iii", 0, false, -1, 3f)
+        val item = AndroidItemEntity(0, now, now, "Room", "对Sqlite的封装，增加了DAO层，与java服务端有些类似。主要应用场景有两个，一个是初始化时持有大量应用运行依赖的业务数据，二是作为缓存提升用户体验。", 0, false, -1, 3f)
+//        val item = AndroidItemEntity(0, now, now, "Paging 3", "iii", 0, false, -1, 3f)
         androidItemDao.insertAll(item)
     }
 
@@ -76,6 +77,5 @@ class ExampleInstrumentedTest {
                 regular
             )
         }
-
     }
 }

@@ -16,6 +16,7 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(SingletonComponent::class)
+@Deprecated("用DataStore替代")
 class SharedPreferencesRepository {
 
     private val defaultSharedPreferencesName = "default"

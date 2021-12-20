@@ -1,6 +1,12 @@
 package com.morladim.mario.main.factory
 
 import android.content.Context
+import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
 //import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -12,10 +18,18 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
+import java.io.IOException
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import javax.inject.Inject
 import javax.inject.Qualifier
 import javax.inject.Singleton
+
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 /**
  *
@@ -79,4 +93,16 @@ class DatabaseRepository {
     fun otherExecutor(): Executor {
         return Executors.newSingleThreadExecutor()
     }
+
+
+//    @Provides
+//    @Singleton
+//    fun getPreferences(
+//        @ApplicationContext context: Context,
+//    ): DataStore<Preferences> {
+//
+//        return a
+//    }
 }
+
+

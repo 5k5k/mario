@@ -11,7 +11,6 @@ class App : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-
         val constraints = Constraints.Builder().setRequiresCharging(true).build()
         val uploadWorkerRequest: WorkRequest =
             OneTimeWorkRequestBuilder<UploadWorker>().setConstraints(constraints).addTag("tt1")

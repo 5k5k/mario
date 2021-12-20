@@ -25,6 +25,8 @@ import javax.inject.Inject
 //https://www.jianshu.com/p/8f915ba6c5a7
 //https://blog.csdn.net/qq_37381177/article/details/115393813?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.highlightwordscore&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.highlightwordscore
 //https://juejin.cn/post/6899330633844129805
+//markdown4j
+//https://github.com/noties/Markwon
 @HiltViewModel
 class GitHubViewModel @Inject constructor(private val repoRepository: GitHubRepository): ViewModel() {
 
