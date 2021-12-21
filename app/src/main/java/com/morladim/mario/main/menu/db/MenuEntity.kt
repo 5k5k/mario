@@ -9,10 +9,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "menu")
 data class MenuEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val name: String,
-    val sort: Int,
-    val first: Boolean = false,
+    var id: Int,
+    var name: String,
+    var sort: Int,
+    var first: Boolean = false,
 )
 
 

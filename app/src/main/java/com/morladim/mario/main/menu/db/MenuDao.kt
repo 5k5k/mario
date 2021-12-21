@@ -21,6 +21,9 @@ interface MenuDao {
     @Query("SELECT * FROM menu WHERE first = 0 ORDER BY sort ASC")
     suspend fun getOthers(): List<MenuEntity>
 
+    @Query("SELECT * FROM menu WHERE first = 0 ORDER BY sort ASC")
+    fun getOtherMenuList():LiveData<List<MenuEntity>>
+
     @Insert
     fun insertAll(vararg menus: MenuEntity)
 

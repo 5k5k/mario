@@ -42,6 +42,75 @@ object MenuConstants {
         )
         menuMaps[current] = menuInfo
 
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
+        menuInfo = MenuInfo(
+            ++current,
+            clazz = KotlinFragment::class,
+            R.mipmap.ic_main_category,
+            R.string.main_leetcode
+        )
+        menuMaps[current] = menuInfo
 
 //        val androidStudio = MenuEntity(++current, "AS", current, false)
 //        val leetCode = MenuEntity(++current, "LeetCode", current, false)

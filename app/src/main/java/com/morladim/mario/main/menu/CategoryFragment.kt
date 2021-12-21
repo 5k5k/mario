@@ -4,18 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import android.widget.GridLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.morladim.mario.R
+import com.morladim.mario.base.GridItemDecoration
 import com.morladim.mario.databinding.FragmentCategoryBinding
-import com.morladim.mario.main.menu.MenuItemAdapter
-import com.morladim.mario.main.menu.MenuItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 /**
  *
@@ -25,7 +23,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CategoryFragment : Fragment() {
 
-    private val viewModel by viewModels<MenuItemViewModel>()
+    private val viewModel by viewModels<CategoryViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +36,24 @@ class CategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context,2)
+        recyclerView.addItemDecoration(GridItemDecoration(2,8))
 
-        lifecycleScope.launch {
-            val adapter = MenuItemAdapter(viewModel.getMenuData())
-            recyclerView.adapter = adapter
+        val menuEvent: MenuEvent = object : MenuEvent {
+            override fun onClick(menuItemData: MenuItemData) {
+                println(menuItemData.menuEntity.name)
+            }
         }
+
+        val adapter = MenuItemListAdapter(menuEvent)
+        recyclerView.adapter = adapter
+
+        viewModel.menuList.observe(this, {
+            var list = it?.map { it1 -> MenuItemData(it1, MenuConstants.menuMaps[it1.id]!!) }
+            list?.let {
+                adapter.submitList(list)
+            }
+        })
 
     }
 }

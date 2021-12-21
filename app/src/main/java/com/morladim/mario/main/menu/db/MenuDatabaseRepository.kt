@@ -28,6 +28,10 @@ class MenuDatabaseRepository @Inject constructor() {
         return menu.getOthers()
     }
 
+    fun getOtherMenuList():LiveData<List<MenuEntity>>{
+        return menu.getOtherMenuList()
+    }
+
 //    suspend fun getOthersWithLiveData(): LiveData<List<MenuEntity>> {
 //        return menu.getOthersWithLiveData()
 //    }
