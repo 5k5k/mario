@@ -26,6 +26,7 @@ class RetrofitRepository {
 
     @Provides
     @Singleton
+    @GitHubRetrofit
     fun getGitHubRetrofit(): Retrofit {
         val logger = HttpLoggingInterceptor()
         logger.level = HttpLoggingInterceptor.Level.BODY

@@ -37,8 +37,6 @@ class AndroidItemPagingDataAdapter :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
-//        val description: TextView = itemView.findViewById(R.id.description_text)
-//        val starCount: TextView = itemView.findViewById(R.id.star_count_text)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

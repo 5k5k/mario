@@ -6,6 +6,7 @@ import com.morladim.mario.kotlin.KotlinFragment
 import com.morladim.mario.main.instance.InstanceFragment
 import com.morladim.mario.main.menu.CategoryFragment
 import com.morladim.mario.main.setting.SettingFragment
+import com.morladim.mario.sample.github.ui.GitHubFragment
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
@@ -26,7 +27,8 @@ class MainViewPagerAdapter(fragment: Fragment, clazz: KClass<out Fragment>) :
         mutableMapOf(
 //            FIRST_PAGE_INDEX to { AndroidFragment() },
             ITEMS_PAGE_INDEX to { CategoryFragment() },
-            SAMPLE_PAGE_INDEX to { SettingFragment() },
+            SAMPLE_PAGE_INDEX to { GitHubFragment() },
+//            SAMPLE_PAGE_INDEX to { SettingFragment() },
             SETTING_PAGE_INDEX to { KotlinFragment() }
         )
     }

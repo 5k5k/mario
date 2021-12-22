@@ -26,7 +26,6 @@ class SettingRepository @Inject constructor(@ApplicationContext val context: Con
     val EXAMPLE_COUNTER = intPreferencesKey("example_counter")
     val exampleCounterFlow: Flow<Int> = context.dataStore.data
         .map { preferences ->
-            // No type safety.
             preferences[EXAMPLE_COUNTER] ?: 0
         }
 

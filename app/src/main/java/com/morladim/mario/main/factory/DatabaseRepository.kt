@@ -94,15 +94,6 @@ class DatabaseRepository {
         return Executors.newSingleThreadExecutor()
     }
 
-
-//    @Provides
-//    @Singleton
-//    fun getPreferences(
-//        @ApplicationContext context: Context,
-//    ): DataStore<Preferences> {
-//
-//        return a
-//    }
 }
 
 

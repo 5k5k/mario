@@ -14,7 +14,5 @@ import dagger.hilt.android.components.FragmentComponent
 @InstallIn(FragmentComponent::class)
 interface FragmentEntryPoint {
 
-//    fun getItemDao(): MenuDao
-
     fun getMenuDatabaseRepository(): MenuDatabaseRepository
 }

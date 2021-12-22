@@ -14,12 +14,12 @@ import javax.inject.Singleton
  * @Date 2021/12/16
  */
 @Singleton
-class GitHubRepository @Inject constructor() {
+class GitHubRepository @Inject constructor(private val gitHubPagingSource: GitHubPagingSource) {
 
     fun getPagingData(): Flow<PagingData<Repo>> {
         return Pager(
-            config = PagingConfig(1, initialLoadSize = 2),
-            pagingSourceFactory = { GitHubPagingSource() }
+            config = PagingConfig(10, initialLoadSize = 10),
+            pagingSourceFactory = { gitHubPagingSource }
         ).flow
     }
 
