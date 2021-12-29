@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/custom_item"
+        android:icon="@drawable/ic_main_android"
+        android:title="@string/main_android" />
+    <item
+        android:id="@+id/category_item"
+        android:icon="@drawable/ic_main_category"
+        android:title="@string/main_category" />
+    <item
+        android:id="@+id/instance_item"
+        android:icon="@mipmap/ic_main_instance"
+        android:title="@string/main_instance" />
+    <item
+        android:id="@+id/setting_item"
+        android:icon="@mipmap/ic_main_setting"
+        android:title="@string/main_setting" />
+</menu>

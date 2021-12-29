@@ -2,7 +2,6 @@ package com.morladim.mario.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
@@ -16,6 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * 主页Fragment
+ * 这里关于menu的item id，是与R中其他id类似全局唯一，所以最好还是在xml中声明
+ *
  * @Author 5k5k
  * @Date 2021/11/28
  */
@@ -24,47 +25,38 @@ class MainViewPagerFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainFragmentViewModel>()
 
+    private var cacheView: View? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentMainViewPagerBinding.inflate(inflater)
-        initMenu(binding.tabs.menu)
+        if (cacheView == null) {
+            val binding = FragmentMainViewPagerBinding.inflate(inflater)
 
-        //第一个标签数据改变后更新UI
-        val menuInfoObserver = Observer<MenuInfo> { menuInfo ->
-            if (binding.viewPager.adapter == null) {
-                binding.tabs.menu.add(0, 0, 0, menuInfo.titleId)
-                binding.tabs.menu.findItem(0).setIcon(menuInfo.iconId)
-                binding.viewPager.adapter =
-                    MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo.clazz)
+            //第一个标签数据改变后更新UI
+            val menuInfoObserver = Observer<MenuInfo> { menuInfo ->
+                binding.tabs.menu.findItem(R.id.custom_item).setTitle(menuInfo.titleId)
+                    .setIcon(menuInfo.iconId)
+                if (binding.viewPager.adapter == null) {
+                    binding.viewPager.adapter =
+                        MainViewPagerAdapter(this@MainViewPagerFragment, menuInfo.clazz)
 
-                NavigationViewMediator(binding.tabs, binding.viewPager) { tab, viewPager2 ->
+                    NavigationViewMediator(binding.tabs, binding.viewPager) { tab, viewPager2 ->
+                        //先写着以后调整
+                        viewPager2.isSaveEnabled = false
 //                        viewPager2.isUserInputEnabled = false
-                    //去掉长按toast
-                    (tab.getChildAt(0) as? ViewGroup)?.children?.forEach { it.setOnLongClickListener { true } }
-                }.attach()
-            } else {
-                binding.tabs.menu.findItem(0).setTitle(menuInfo.titleId)
-                binding.tabs.menu.findItem(0).setIcon(menuInfo.iconId)
-                (binding.viewPager.adapter as MainViewPagerAdapter).changeFirstFragment(menuInfo.clazz)
+                        //去掉长按toast
+                        (tab.getChildAt(0) as? ViewGroup)?.children?.forEach { it.setOnLongClickListener { true } }
+                    }.attach()
+                } else {
+                    (binding.viewPager.adapter as MainViewPagerAdapter).changeFirstFragment(menuInfo.clazz)
+                }
             }
+            mainViewModel.menuInfo.observe(this@MainViewPagerFragment, menuInfoObserver)
+            cacheView = binding.root
         }
-        mainViewModel.menuInfo.observe(this@MainViewPagerFragment, menuInfoObserver)
-
-        return binding.root
+        return cacheView!!
     }
-
-    private fun initMenu(menu: Menu) {
-        menu.add(0, 1, 1, R.string.main_category)
-        menu.findItem(1).setIcon(R.drawable.ic_main_category)
-
-        menu.add(0, 2, 2, R.string.main_instance)
-        menu.findItem(2).setIcon(R.mipmap.ic_main_instance)
-
-        menu.add(0, 3, 3, R.string.main_setting)
-        menu.findItem(3).setIcon(R.mipmap.ic_main_setting)
-    }
-
 }

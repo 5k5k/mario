@@ -6,23 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--        <com.google.android.material.tabs.TabLayout-->
-        <!--            android:id="@+id/tabs"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            style="@style/Widget.MaterialComponents.TabLayout.Colored"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="?attr/actionBarSize"/>-->
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:labelVisibilityMode="labeled"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <!--        app:itemIconTint="@color/purple_700"-->
-        <!--        android:background="?android:attr/windowBackground"-->
-        <!--        app:tabIconTint="@drawable/tab_icon_color_selector"-->
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/main_menu" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
