@@ -1,19 +1,16 @@
 package com.morladim.mario.sample.github.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.morladim.mario.R
-import com.morladim.mario.databinding.FragmentGithubBinding
+import com.morladim.mario.base.ui.BaseFragment
 import com.morladim.mario.sample.github.GitHubViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -25,24 +22,13 @@ import kotlinx.coroutines.launch
  * @Date 2021/12/15
  */
 @AndroidEntryPoint
-class GitHubFragment : Fragment() {
+class GitHubFragment : BaseFragment(R.layout.fragment_github) {
 
-    private val viewModel by lazy { ViewModelProvider(this).get(GitHubViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this)[GitHubViewModel::class.java] }
 
     private val repoAdapter = GitHubPagingDataAdapter()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val binding = FragmentGithubBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+    override fun initView(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
         recyclerView.layoutManager = LinearLayoutManager(context)
