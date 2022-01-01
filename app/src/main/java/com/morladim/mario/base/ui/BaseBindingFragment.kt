@@ -4,23 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
 /**
  *
  * @Author 5k5k
- * @Date 2021/12/30
+ * @Date 2022/1/1
  */
-open class BaseFragment : Fragment {
-
+open class BaseBindingFragment<T : ViewDataBinding>(private val layoutId: Int) :
+    Fragment(layoutId) {
     open val enableCachedView = true
 
     var cachedView: View? = null
 
-    constructor() : super()
-
-    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
+    var binding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +29,8 @@ open class BaseFragment : Fragment {
         return if (enableCachedView && cachedView != null) {
             cachedView
         } else {
-            super.onCreateView(inflater, container, savedInstanceState)
+            binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+            return binding!!.root
         }
     }
 

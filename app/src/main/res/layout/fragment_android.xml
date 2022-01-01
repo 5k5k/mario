@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.morladim.mario.androiditem.AndroidItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -9,13 +17,15 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.loadingViewModel.contentViewVisible?View.VISIBLE:View.INVISIBLE}" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.loadingViewModel.loadingViewVisible?View.VISIBLE:View.INVISIBLE}" />
 
     </FrameLayout>
 </layout>

@@ -4,8 +4,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.morladim.mario.androiditem.db.AndroidItemDao
 import com.morladim.mario.androiditem.db.AndroidItemEntity
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -23,12 +21,9 @@ class AndroidItemPagingSource @Inject constructor(private val dao: AndroidItemDa
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AndroidItemEntity> {
         return try {
-            val page = params.key ?: 1 // set page 1 as default
+            val page = params.key ?: 1
             val pageSize = params.loadSize
-//            var entities = dao.getByPage(pageSize, (page - 1) * pageSize).value
-            var offset = (page - 1) * pageSize
-            if (offset > 0)
-                offset += pageSize * 2
+            val offset = (page - 1) * pageSize * 3
             //为了支持协程加入suspend
             val entities = dao.getByPage(pageSize, offset)
             val prevKey = if (page > 1) page - 1 else null

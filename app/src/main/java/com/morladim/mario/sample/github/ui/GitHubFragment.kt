@@ -56,8 +56,7 @@ class GitHubFragment : BaseFragment(R.layout.fragment_github) {
                         context,
                         "Load Error: ${state.error.message}",
                         Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    ).show()
                 }
             }
         }
