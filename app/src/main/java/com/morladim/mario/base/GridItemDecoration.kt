@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 /**
- *
+ * 适用于GridLayout，样式为所有item之间固定大小间隔，整体的外侧间距不在这里做
  * @Author fireman
  * @Date 2021/12/21
  */
@@ -54,10 +54,9 @@ class GridItemDecoration() : RecyclerView.ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        val lastPosition = state.itemCount - 1
         var position = parent.getChildAdapterPosition(view)
         //头尾不处理
-        if (position < startFromSize || lastPosition - endFromSize > position) {
+        if (position < startFromSize || state.itemCount - endFromSize > position) {
             return
         }
         // 减掉不设置间距的position
@@ -69,7 +68,7 @@ class GridItemDecoration() : RecyclerView.ItemDecoration() {
         if (layoutParams is StaggeredGridLayoutManager.LayoutParams) {
             column = layoutParams.spanIndex
         }
-        outRect.left = column * spacing / spanCount
+        outRect.left = if (column == 0) 0 else spacing
         outRect.right = 0
         if (position >= spanCount) {
             outRect.top = spacing

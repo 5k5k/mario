@@ -29,7 +29,7 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+//val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 /**
  *
@@ -55,6 +55,7 @@ class DatabaseRepository {
             context,
             AppDatabase::class.java, "mario.db"
         )
+                //这里默认是在主线程中执行？？？
             .createFromAsset("db/v1.db")
 //            .addMigrations(MIGRATION_1_2)
             .setQueryExecutor(executor).build()

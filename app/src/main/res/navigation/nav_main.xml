@@ -21,14 +21,12 @@
         <fragment
             android:id="@+id/leetcode_fragment"
             android:name="com.morladim.mario.leetcode.LeetCodeFragment"/>
-
     </navigation>
 
-    <fragment
-        android:id="@+id/leetcode_detail_fragment"
-        android:name="com.morladim.mario.leetcode.LeetCodeDetailFragment">
-
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/leetcode_detail_fragment"-->
+<!--        android:name="com.morladim.mario.leetcode.LeetCodeDetailFragment">-->
+<!--    </fragment>-->
 </navigation>
 
 
