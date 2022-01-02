@@ -45,7 +45,7 @@ class App : Application(), Configuration.Provider {
                     .detectLeakedSqlLiteObjects()
                     .detectLeakedClosableObjects()
                     .penaltyLog()
-                    .penaltyDeath()
+//                    .penaltyDeath()
                     .build()
             )
         }
